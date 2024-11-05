@@ -1,0 +1,4 @@
+Add task completion trends and analytics?
+Implement task dependencies?
+Add task labels/tags?
+Create a timeline view?

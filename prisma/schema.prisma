@@ -1,0 +1,32 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Task {
+  id            Int       @id @default(autoincrement())
+  title         String
+  completed     Boolean   @default(false)
+  category      String    @default("Personal")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  userId        String?   
+  isRecurring   Boolean   @default(false)
+  recurrence    String?   // 'daily', 'weekly', 'monthly'
+  dueDate       DateTime?
+  reminder      DateTime?
+  lastCompleted DateTime?
+  priority      String    @default("medium") // 'high', 'medium', 'low'
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+} 
