@@ -1,5 +1,11 @@
 {
-  "buildCommand": "prisma generate && next build",
+  "buildCommand": "npx prisma generate && npx prisma db push && next build",
   "installCommand": "npm install",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ]
 } 
