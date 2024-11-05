@@ -338,24 +338,42 @@ export function DailyFlowComponent() {
                 {/* Existing calendar component */}
                 <div className="flex-1">
                   {taskStats && (
-                    <div className="grid grid-cols-3 gap-4 mb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                       <Card>
-                        <CardContent className="p-4">
-                          <p className="text-sm font-medium">Daily Progress</p>
-                          <p className="text-2xl font-bold">{taskStats.day.completed}/{taskStats.day.total}</p>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                          <CardTitle className="text-sm font-medium">Daily Progress</CardTitle>
+                          <Clock className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                          <div className="text-2xl font-bold">
+                            {taskStats.day.completed}/{taskStats.day.total}
+                          </div>
+                          <p className="text-xs text-muted-foreground">
+                            {taskStats.day.completion}% completed today
+                          </p>
                         </CardContent>
                       </Card>
                       <Card>
-                        <CardContent className="p-4">
-                          <p className="text-sm font-medium">Weekly High Priority</p>
-                          <p className="text-2xl font-bold">{taskStats.week.highPriority}</p>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                          <CardTitle className="text-sm font-medium">Weekly High Priority</CardTitle>
+                          <BarChart2 className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                          <div className="text-2xl font-bold">{taskStats.week.highPriority}</div>
+                          <p className="text-xs text-muted-foreground">
+                            {taskStats.week.completion}% weekly tasks completed
+                          </p>
                         </CardContent>
                       </Card>
                       <Card>
-                        <CardContent className="p-4">
-                          <p className="text-sm font-medium">Monthly Completion</p>
-                          <p className="text-2xl font-bold">
-                            {Math.round((taskStats.month.completed / taskStats.month.total) * 100)}%
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                          <CardTitle className="text-sm font-medium">Monthly Completion</CardTitle>
+                          <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
+                        </CardHeader>
+                        <CardContent>
+                          <div className="text-2xl font-bold">{taskStats.month.completion}%</div>
+                          <p className="text-xs text-muted-foreground">
+                            {taskStats.month.completed} of {taskStats.month.total} tasks completed
                           </p>
                         </CardContent>
                       </Card>
@@ -636,7 +654,7 @@ export function DailyFlowComponent() {
                     <CardContent className="p-4">
                       <p className="text-sm font-medium">Monthly Completion</p>
                       <p className="text-2xl font-bold">
-                        {Math.round((taskStats.month.completed / (taskStats.month.total || 1)) * 100)}%
+                        {Math.round((taskStats.month.completed / taskStats.month.total) * 100)}%
                       </p>
                     </CardContent>
                   </Card>
